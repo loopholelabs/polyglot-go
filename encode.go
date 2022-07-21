@@ -22,42 +22,6 @@ import (
 	"unsafe"
 )
 
-type Kind []byte
-
-var (
-	NilKind     = Kind([]byte{0})
-	SliceKind   = Kind([]byte{1})
-	MapKind     = Kind([]byte{2})
-	AnyKind     = Kind([]byte{3})
-	BytesKind   = Kind([]byte{4})
-	StringKind  = Kind([]byte{5})
-	ErrorKind   = Kind([]byte{6})
-	BoolKind    = Kind([]byte{7})
-	Uint8Kind   = Kind([]byte{8})
-	Uint16Kind  = Kind([]byte{9})
-	Uint32Kind  = Kind([]byte{10})
-	Uint64Kind  = Kind([]byte{11})
-	Int32Kind   = Kind([]byte{12})
-	Int64Kind   = Kind([]byte{13})
-	Float32Kind = Kind([]byte{14})
-	Float64Kind = Kind([]byte{15})
-)
-
-type Error string
-
-func (e Error) Error() string {
-	return string(e)
-}
-
-func (e Error) Is(err error) bool {
-	return e.Error() == err.Error()
-}
-
-var (
-	falseBool = byte(0)
-	trueBool  = byte(1)
-)
-
 func encodeNil(b *Buffer) {
 	b.Write(NilKind)
 }
